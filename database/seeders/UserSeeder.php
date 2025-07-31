@@ -10,41 +10,53 @@ use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
+
+    protected function createIfNotExists(array $attributes): void
+    {
+        if (!User::where('email', $attributes['email'])->exists()) {
+            User::create(array_merge([
+                'id'       => Str::uuid(),
+                'password' => Hash::make($attributes['password'] ?? 'password'),
+                'status'   => UserStatus::VERIFIED,
+            ], $attributes));
+        }
+    }
+
     /**
      * Run the database seeds.
      */
-    public function runOnce(): void
+    protected function runOnce(): void
     {
-        User::create([
-            'id'       => Str::uuid(),
-            'name'     => 'Admin User',
-            'email'    => config('admin.user_email', 'admin@example.com'),
-            'password' => Hash::make(config('admin.user_password', 'secret')),
-            'role'     => UserRole::ADMIN,
-            'status'   => UserStatus::VERIFIED,
-        ]);
-
-        User::create([
-            'id'       => Str::uuid(),
-            'name'     => 'Company HR',
-            'email'    => 'hr@example.com',
-            'password' => Hash::make('password'),
-            'role'     => UserRole::POSTER,
-            'status'   => UserStatus::VERIFIED,
-        ]);
-
-        User::create([
-            'id'       => Str::uuid(),
-            'name'     => 'Job Seeker',
-            'email'    => 'seeker@example.com',
-            'password' => Hash::make('password'),
-            'role'     => UserRole::SEEKER,
-            'status'   => UserStatus::VERIFIED,
-        ]);
+        $users = [
+            [
+                'name'     => 'Admin User',
+                'email'    => config('admin.user_email', 'admin@example.com'),
+                'password' => config('admin.user_password', 'secret'),
+                'role'     => UserRole::ADMIN,
+            ],
+            [
+                'name'     => 'Company HR',
+                'email'    => 'hr@example.com',
+                'password' => 'password',
+                'role'     => UserRole::POSTER,
+            ],
+            [
+                'name'     => 'Job Seeker',
+                'email'    => 'seeker@example.com',
+                'password' => 'password',
+                'role'     => UserRole::SEEKER,
+            ],
+        ];
+        foreach ($users as $user) {
+            $this->createIfNotExists($user);
+        }
     }
 
     public function run(): void
     {
         $this->runOnce();
+        User::factory()->count(10)->poster()->create();
+        User::factory()->count(80)->seeker()->verified()->create();
+        User::factory()->count(20)->seeker()->unverified()->create();
     }
 }

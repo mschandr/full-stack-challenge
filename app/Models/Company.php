@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 
 class Company extends Model
 {
@@ -15,6 +16,14 @@ class Company extends Model
     public    $incrementing = false;
     protected $guarded      = ['id'];
     protected $keyType      = 'string';
+
+    protected $fillable = [
+        'name',
+        'description',
+        'website',
+        'created_by',
+        'updated_by',
+    ];
 
     protected static function booted(): void
     {
