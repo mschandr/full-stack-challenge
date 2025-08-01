@@ -56,4 +56,11 @@ class JobPosting extends Model
     {
         return $this->hasMany(Application::class, 'job_id');
     }
+
+    public function scopeDehydrated($query)
+    {
+        return $query->where('visible', true)
+            ->whereNull('deleted_at')
+            ->select(['id', 'title', 'company_id', 'location', 'work_type', 'salary']);
+    }
 }
