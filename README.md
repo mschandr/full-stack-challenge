@@ -1,63 +1,60 @@
-= WiseJobs Backend Submission
+# WiseJobs Backend Submission
 
-== Overview:
+## Overview
 
-The purpose of this project was obviously to guage how well I could write code for WiseJobs + get an idea of my skills, let me say this, my backend skills are pretty decent, my front end skills definitely could use some work. But that said, here's the summary of how it went.
+The purpose of this project was obviously to gauge how well I could write code for WiseJobs and give a sense of my skills. Let me say this—my backend skills are pretty decent. My frontend skills? Definitely need some work. That said, here's the summary of how it went.
 
-== Summary:
+## Summary
 
-This project, the backend for WiseJobs, it's all API driven and while technically it would be nice to have seen the Vue+inertia FE, they ultimately decided that today was the day that they weren't going to run at all. I even gave the issues to my ChatGPT AI. The backend does take care of the following features though.
+This project is the backend for WiseJobs. It's all API-driven. Technically, it would've been nice to showcase the Vue + Inertia frontend, but today was the day they collectively decided they weren't going to work. I even handed the issues off to ChatGPT.
 
-== Features:
+Still, the backend is fully functional and covers the following.
 
-1. Laravel 12 backend
-2. Sanctum for API authentication
-3. Job listing endpoint implemented with:
-   - Filtering by location, work type, and salary band
-   - Pagination (15 per page)
-   - Resource transformation using JobPostingDehydratedResource
+## Features
 
-4. Inertia (partially wired) — frontend integration attempted but deferred due to environmental issues (To say this was frustrating was an a understatement
+- Laravel 12 backend
+- Sanctum for API authentication
+- Job listing endpoint implemented with:
+  - Filtering by location, work type, and salary band
+  - Pagination (15 per page)
+  - Resource transformation via `JobPostingDehydratedResource`
+- Inertia (partially wired) — frontend integration was attempted but deferred due to environment issues (to say this was frustrating is an understatement)
 
-== Routes:
+## Routes
 
-I really would prefer this be documented using a proper tool like swagger but honestly who has the time.
+Honestly, I'd prefer this be documented with Swagger or similar—but time.
 
-== Filtering Logic:
+## Filtering Logic
 
-1. Location: fuzzy LIKE match
-2. Work Type: exact match
-3. Salary Band:
-   - low: < $100K
-   - mid: $100K–$150K
-   - high: > $150K
+- **Location**: fuzzy `LIKE` match
+- **Work Type**: exact match
+- **Salary Band**:
+  - `low`: under $100K
+  - `mid`: $100K–$150K
+  - `high`: over $150K
 
------------
+---
 
-= Setup Instructions
+# Setup Instructions
 
-```
+```bash
 git clone <repo>
 cd wisejobs
-cp env.example .env
-edit the .env file to accomodate a few customizations
-    1.  DB config needs to be edited with your values
-    2.  artisan key:generate
-    3.  artisan migrate
-    4.  artisan db:seed
-    5.  artisan key:generate
-php artisan migrate
+cp .env.example .env
+# Edit .env with your DB credentials and app URL
+php artisan key:generate
+php artisan migrate --seed
 npm install
 npm run dev
-```
-== Notes: 
+
+## Notes: 
 
 Frontend is scaffolded using Inertia.js + Vue 3.
 Vite integration issues (likely due to SSL and local dev certs) prevented successful Inertia rendering in browser.
 
 Backend functionality is fully working and testable via Postman or Laravel routes.
 
-== Todo:
+## Todo:
 
 @todo:
 
