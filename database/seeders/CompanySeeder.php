@@ -10,13 +10,13 @@ use Illuminate\Support\Str;
 class CompanySeeder extends Seeder
 {
 
-    protected function createIfNotExists(array $attributes): void
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
     {
-        if (!Company::where('name', $attributes['name'])->exists()) {
-            Company::create(array_merge([
-                'id'       => Str::uuid(),
-            ], $attributes));
-        }
+        $this->runOnce();
+        Company::factory()->count(8)->create();
     }
 
     protected function runOnce(): void
@@ -37,12 +37,13 @@ class CompanySeeder extends Seeder
             $this->createIfNotExists($company);
         }
     }
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+
+    protected function createIfNotExists(array $attributes): void
     {
-        $this->runOnce();
-        Company::factory()->count(8)->create();
+        if (!Company::where('name', $attributes['name'])->exists()) {
+            Company::create(array_merge([
+                'id' => Str::uuid(),
+            ], $attributes));
+        }
     }
 }
