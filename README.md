@@ -59,9 +59,10 @@ Backend functionality is fully working and testable via Postman or Laravel route
 
 @todo:
 
-- Fix Vite/HTTPS dev cert conflict
-- Finalize Vue/Inertia component rendering
-- Add frontend tests or Cypress integration if frontend resumes
+[] Fix Vite/HTTPS dev cert conflict
+[] Finalize Vue/Inertia component rendering
+[] Add testing
+[]
 
 If I had more time, I would fix the front end obviously and wire up login and logout with the front end. but for whatever reason vite + Inertia refuse to work.
 
