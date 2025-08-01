@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 class UserSeeder extends Seeder
 {
 
+    const SLUGS = ['acme', 'globex', 'infinity', 'hooli', 'umbrella', 'cyberdyne', 'wayne', 'stark', 'piedpiper'];
+
     protected function createIfNotExists(array $attributes): void
     {
         if (!User::where('email', $attributes['email'])->exists()) {
@@ -55,7 +57,10 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $this->runOnce();
-        User::factory()->count(10)->poster()->create();
+        User::factory()
+            ->count(10)
+            ->poster(self::SLUGS)
+            ->create();
         User::factory()->count(80)->seeker()->verified()->create();
         User::factory()->count(20)->seeker()->unverified()->create();
     }

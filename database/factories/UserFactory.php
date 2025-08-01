@@ -49,17 +49,25 @@ class UserFactory extends Factory
     /**
      *  For Posters they need a special role and have to be verified to move on.
      *
+     * @param array $slugs
      * @return static
      */
-    public function poster(): static
+    public function poster(array $slugs = []): static
     {
-        return $this->state(fn(array $attributes) => [
-            'role'              => UserRole::POSTER,
-            'status'            => UserStatus::VERIFIED,
-            'email_verified_at' => now(),
-            'company_id'        => Company::inRandomOrder()->first()->id,
-        ]);
+        return $this->state(function (array $attributes) use ($slugs) {
+            $company = count($slugs)
+                ? Company::whereIn('slug', $slugs)->inRandomOrder()->first()
+                : Company::inRandomOrder()->first();
+
+            return [
+                'role'              => UserRole::POSTER,
+                'status'            => UserStatus::VERIFIED,
+                'email_verified_at' => now(),
+                'company_id'        => $company->id,
+            ];
+        });
     }
+
 
     public function seeker(): static
     {
