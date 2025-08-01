@@ -4,6 +4,10 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+    server: {
+        host: 'wisejobs.local',
+        https: false,
+    },
     plugins: [
         laravel({
             input: ['resources/js/app.ts'],

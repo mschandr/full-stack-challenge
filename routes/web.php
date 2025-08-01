@@ -5,6 +5,9 @@ use Inertia\Inertia;
 use App\Http\Resources\JobPostingDehydratedResource;
 use App\Models\JobPosting;
 
+
+Route::get('/test', fn() => Inertia::render('Jobs/Index'));
+
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
