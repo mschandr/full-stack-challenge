@@ -16,7 +16,6 @@ class JobPostingController extends Controller
     {
         $jobs = JobPosting::dehydrated()->paginate(15);
         return JobPostingDehydratedResource::collection($jobs);
-
     }
 
 
