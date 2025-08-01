@@ -46,8 +46,9 @@ php artisan key:generate
 php artisan migrate --seed
 npm install
 npm run dev
+```
 
-## Notes: 
+## Notes:
 
 Frontend is scaffolded using Inertia.js + Vue 3.
 Vite integration issues (likely due to SSL and local dev certs) prevented successful Inertia rendering in browser.
