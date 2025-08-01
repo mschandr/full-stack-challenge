@@ -6,6 +6,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
     server: {
         host: 'wisejobs.local',
+        port: 5173,
         https: false,
     },
     plugins: [
