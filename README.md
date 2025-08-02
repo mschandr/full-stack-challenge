@@ -2,7 +2,7 @@
 
 ## Overview
 
-The purpose of this project was obviously to gauge how well I could write code for WiseJobs and give a sense of my skills. Let me say this—my backend skills are pretty decent. My frontend skills? Definitely need some work. That said, here's the summary of how it went.
+The purpose of this project was to gauge my coding skills for WiseJobs and provide a sense of my abilities. Let me say this—my backend skills are pretty decent. My frontend skills? Definitely needs some work. That said, here's the summary of how it went.
 
 ## Summary
 
@@ -51,7 +51,7 @@ npm run dev
 ## Notes:
 
 Frontend is scaffolded using Inertia.js + Vue 3.
-Vite integration issues (likely due to SSL and local dev certs) prevented successful Inertia rendering in browser.
+Vite integration issues (likely due to SSL and local dev certs) prevented successful Inertia rendering in the browser.
 
 Backend functionality is fully working and testable via Postman or Laravel routes.
 
@@ -59,10 +59,10 @@ Backend functionality is fully working and testable via Postman or Laravel route
 
 @todo:
 
-- [] Fix Vite/HTTPS dev cert conflict
-- [] Finalize Vue/Inertia component rendering
-- [] Add testing
+- [ ] Fix Vite/HTTPS dev cert conflict
+- [ ] Finalize Vue/Inertia component rendering
+- [ ] Add testing
 
-If I had more time, I would fix the front end obviously and wire up login and logout with the front end. but for whatever reason vite + Inertia refuse to work.
+If I had more time, I would obviously fix the front end and wire up login and logout with it. But for whatever reason, Vite + Inertia refuse to work.
 
 
