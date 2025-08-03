@@ -7,7 +7,7 @@ use App\Models\JobPosting;
 
 
 Route::get('/test', fn() => Inertia::render('Jobs/Index'));
-
+Route::get('/test-csp', fn () => Inertia::render('Test'));
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
